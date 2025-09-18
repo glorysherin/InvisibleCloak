@@ -1,32 +1,56 @@
-# 🧙 InvisibleCloak
+# 🧙‍♂️ Invisible Cloak
 
-This project recreates the famous **invisibility cloak effect from Harry Potter** using **Python** and **OpenCV**.  
-By detecting a specific color (default: red) and replacing it with the pre-captured background, the cloak appears invisible, giving the illusion of transparency. 🪄
+A Python implementation of Harry Potter's invisibility cloak using OpenCV. Detects a colored cloth and replaces it with the background to create an invisibility effect.
 
----
+## Features
+- Real-time invisibility effect via webcam
+- Customizable cloak colors
+- Simple and lightweight
 
-## ✨ Features
-- Real-time invisibility cloak effect using webcam
-- Detects cloak color in **HSV color space**
-- Smooth masking with morphological operations
-- Customizable cloak color range
-- Lightweight and beginner-friendly
-
----
-
-## 🚀 How It Works
-1. Captures the static background for a few seconds at the start.
-2. Detects pixels of the cloak color in each video frame.
-3. Replaces the detected cloak pixels with the saved background.
-4. Combines cloak-masked background with the original frame → giving the cloak invisibility.
-
----
-
-## 🛠 Requirements
-- Python 3.x
-- OpenCV
-- NumPy
-
-Install dependencies:
+## Installation
 ```bash
 pip install opencv-python numpy
+```
+
+## Usage
+1. Run the program:
+```bash
+python main.py
+```
+
+2. **Important**: Move out of camera view for the first 3 seconds (background capture)
+3. Return with a red cloth/cloak to see the invisibility effect
+4. Press 'q' to quit
+
+## Customize Cloak Color
+
+### Blue Cloak
+Replace the HSV ranges in `main.py`:
+```python
+# Replace red ranges with:
+lower_blue = np.array([100, 150, 0])
+upper_blue = np.array([140, 255, 255])
+mask = cv2.inRange(hsv, lower_blue, upper_blue)
+```
+
+### Green Cloak
+```python
+lower_green = np.array([40, 150, 0])
+upper_green = np.array([80, 255, 255])
+mask = cv2.inRange(hsv, lower_green, upper_green)
+```
+
+### Common HSV Ranges
+| Color | Lower HSV | Upper HSV |
+|-------|-----------|-----------|
+| Red | `[0, 120, 70]` | `[10, 255, 255]` |
+| Blue | `[100, 150, 0]` | `[140, 255, 255]` |
+| Green | `[40, 150, 0]` | `[80, 255, 255]` |
+
+## Tips
+- Use solid-colored cloth
+- Ensure good lighting
+- Keep background static during initial capture
+
+---
+⭐ Star this repo if you found it helpful!
